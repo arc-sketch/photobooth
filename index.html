@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Our Photobooth ❤</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@700&family=Lobster&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gun/lib/radix.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gun/lib/radisk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gun/lib/store.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gun/lib/rindexed.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+</head>
+<body>
+
+    <div id="flash"></div>
+    <div id="countdown-overlay">
+        <span id="countdown-number">3</span>
+        <div id="multi-pose-progress"></div>
+    </div>
+    <div id="notification-toast"></div>
+
+    <!-- LANDING -->
+    <div id="screen-landing" class="screen active">
+        <div class="landing-content">
+            <div class="hearts-bg">
+                <span>❤</span><span>💕</span><span>💖</span><span>❤</span><span>💕</span>
+            </div>
+            <h1 class="landing-title">Our Photobooth</h1>
+            <p class="landing-subtitle">Ready to make memories? 😉</p>
+            <button id="btn-enter" class="btn-primary">Enter 💕</button>
+        </div>
+    </div>
+
+    <!-- PHOTOBOOTH -->
+    <div id="screen-booth" class="screen">
+        <div class="booth-header">
+            <div class="booth-nav">
+                <button class="nav-tab active" data-view="camera">📸 Camera</button>
+                <button class="nav-tab" data-view="gallery">🖼 Gallery</button>
+                <button class="nav-tab" data-view="exchange">💌 Exchange</button>
+            </div>
+        </div>
+
+        <!-- Camera View -->
+        <div id="view-camera" class="view active">
+            <div id="camera-container">
+                <video id="camera" autoplay playsinline></video>
+                <canvas id="effect-canvas"></canvas>
+                <canvas id="capture-canvas" style="display:none;"></canvas>
+            </div>
+
+            <div id="controls">
+                <div id="filter-bar">
+                    <button class="filter-btn active" data-filter="none">Normal</button>
+                    <button class="filter-btn" data-filter="grayscale">B&W</button>
+                    <button class="filter-btn" data-filter="sepia">Sepia</button>
+                    <button class="filter-btn" data-filter="vintage">Vintage</button>
+                    <button class="filter-btn" data-filter="warm">Warm</button>
+                    <button class="filter-btn" data-filter="cool">Cool</button>
+                    <button class="filter-btn" data-filter="rosy">Rosy</button>
+                    <button class="filter-btn" data-filter="dreamy">Dreamy</button>
+                </div>
+
+                <div id="effect-bar">
+                    <button class="effect-btn active" data-effect="none">None</button>
+                    <button class="effect-btn" data-effect="sparkles">✨ Sparkles</button>
+                    <button class="effect-btn" data-effect="hearts">❤️ Hearts</button>
+                    <button class="effect-btn" data-effect="rainbow">🌈 Rainbow</button>
+                    <button class="effect-btn" data-effect="neon">💜 Neon</button>
+                    <button class="effect-btn" data-effect="stars">⭐ Stars</button>
+                    <button class="effect-btn" data-effect="confetti">🎊 Confetti</button>
+                    <button class="effect-btn" data-effect="butterflies">🦋 Cute</button>
+                    <button class="effect-btn" data-effect="glitter">💎 Glitter</button>
+                    <button class="effect-btn" data-effect="sunglasses">🕶 Sunglasses</button>
+                    <button class="effect-btn" data-effect="blush">😊 Blush</button>
+                    <button class="effect-btn" data-effect="dogface">🐶 Dog</button>
+                    <button class="effect-btn" data-effect="crown">👑 Crown</button>
+                </div>
+
+                <div id="capture-row">
+                    <button id="btn-mode-single" class="mode-btn active">Single</button>
+                    <button id="btn-mode-multi" class="mode-btn">4-Pose Strip</button>
+                </div>
+
+                <button id="capture-btn">
+                    <span class="shutter-ring"></span>
+                    <span class="shutter-inner"></span>
+                </button>
+
+                    <button id="switch-camera">Flip</button>
+                </div>
+            </div>
+
+        <!-- Preview Overlay -->
+        <div id="preview-overlay" style="display:none;">
+            <div id="preview-top">
+                <h2 id="preview-title">Nice shot!</h2>
+                <div id="template-selector">
+                    <button class="tpl-btn active" data-template="none">No Frame</button>
+                    <button class="tpl-btn" data-template="heart">Heart</button>
+                    <button class="tpl-btn" data-template="polaroid">Polaroid</button>
+                    <button class="tpl-btn" data-template="film">Film Strip</button>
+                    <button class="tpl-btn" data-template="roses">Roses</button>
+                    <button class="tpl-btn" data-template="starry">Starry</button>
+                    <button class="tpl-btn" data-template="blush">Blush</button>
+                    <button class="tpl-btn" data-template="vintage-frame">Vintage</button>
+                    <button class="tpl-btn" data-template="comic">Pop Art</button>
+                    <button class="tpl-btn" data-template="strip4">Photo Strip</button>
+                    <button class="tpl-btn" data-template="elegant">Elegant</button>
+                </div>
+            </div>
+
+            <div id="result-wrapper">
+                <canvas id="result-canvas"></canvas>
+                <canvas id="sticker-canvas"></canvas>
+            </div>
+
+            <!-- Sticker Panel -->
+            <div id="sticker-panel">
+                <p class="panel-label">Tap a sticker, then tap the photo:</p>
+                <div id="sticker-list">
+                    <button class="sticker-btn" data-sticker="❤">❤</button>
+                    <button class="sticker-btn" data-sticker="💕">💕</button>
+                    <button class="sticker-btn" data-sticker="💖">💖</button>
+                    <button class="sticker-btn" data-sticker="✨">✨</button>
+                    <button class="sticker-btn" data-sticker="⭐">⭐</button>
+                    <button class="sticker-btn" data-sticker="🌟">🌟</button>
+                    <button class="sticker-btn" data-sticker="🦋">🦋</button>
+                    <button class="sticker-btn" data-sticker="🌸">🌸</button>
+                    <button class="sticker-btn" data-sticker="🌺">🌺</button>
+                    <button class="sticker-btn" data-sticker="👑">👑</button>
+                    <button class="sticker-btn" data-sticker="💍">💍</button>
+                    <button class="sticker-btn" data-sticker="🎵">🎵</button>
+                    <button class="sticker-btn" data-sticker="🕊">🕊</button>
+                    <button class="sticker-btn" data-sticker="🌹">🌹</button>
+                    <button class="sticker-btn" data-sticker="💐">💐</button>
+                    <button class="sticker-btn" data-sticker="🎂">🎂</button>
+                    <button class="sticker-btn" data-sticker="🍰">🍰</button>
+                    <button class="sticker-btn" data-sticker="🧸">🧸</button>
+                    <button class="sticker-btn" data-sticker="💋">💋</button>
+                    <button class="sticker-btn" data-sticker="🔥">🔥</button>
+                </div>
+                <button id="btn-clear-stickers" class="btn-small">Clear Stickers</button>
+            </div>
+
+            <!-- Text Overlay Panel -->
+            <div id="text-panel">
+                <p class="panel-label">Add text on your photo:</p>
+                <div id="text-controls">
+                    <input type="text" id="overlay-text" placeholder="Type something cute...">
+                    <select id="text-font">
+                        <option value="Pacifico">Pacifico</option>
+                        <option value="Dancing Script">Dancing Script</option>
+                        <option value="Lobster">Lobster</option>
+                        <option value="Permanent Marker">Marker</option>
+                        <option value="Poppins">Poppins</option>
+                    </select>
+                    <input type="color" id="text-color" value="#ffffff">
+                    <input type="range" id="text-size" min="16" max="80" value="32">
+                </div>
+                <button id="btn-apply-text" class="btn-small">Apply Text</button>
+            </div>
+
+            <div class="caption-box">
+                <input type="text" id="photo-caption" placeholder="Add a caption... (optional)">
+            </div>
+            <div id="preview-actions">
+                <button id="download-btn">Download</button>
+                <button id="share-btn">Share 💕</button>
+                <button id="retake-btn">Retake</button>
+            </div>
+        </div>
+
+        <!-- Gallery View -->
+        <div id="view-gallery" class="view">
+            <div class="gallery-header">
+                <h2>Our Memories 📸</h2>
+                <p id="photo-count">0 photos together</p>
+                <button id="btn-slideshow" class="btn-small">▶ Slideshow</button>
+            </div>
+            <div id="gallery-grid"></div>
+            <div id="gallery-empty" class="empty-state">
+                <span class="empty-icon">📷</span>
+                <p>No photos yet! Take your first one together.</p>
+            </div>
+        </div>
+
+        <!-- Exchange View -->
+        <div id="view-exchange" class="view">
+            <div class="exchange-header">
+                <h2>Photo Exchange 💌</h2>
+            </div>
+            <div id="exchange-messages"></div>
+            <div class="exchange-input-area">
+                <button id="btn-send-photo" class="btn-small">📸</button>
+                <input type="text" id="exchange-text" placeholder="Send a message...">
+                <button id="btn-send-text" class="btn-primary btn-send">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="image-modal" style="display:none;">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <img id="modal-image" src="" alt="Photo">
+            <p id="modal-caption"></p>
+            <p id="modal-by"></p>
+            <div id="modal-reactions">
+                <button class="react-btn" data-react="❤">❤</button>
+                <button class="react-btn" data-react="😍">😍</button>
+                <button class="react-btn" data-react="🥰">🥰</button>
+                <button class="react-btn" data-react="😘">😘</button>
+                <button class="react-btn" data-react="🔥">🔥</button>
+                <button class="react-btn" data-react="💯">💯</button>
+            </div>
+            <div id="modal-reaction-list"></div>
+            <button id="modal-download" class="btn-small">Download</button>
+        </div>
+    </div>
+
+    <!-- Slideshow Overlay -->
+    <div id="slideshow-overlay" style="display:none;">
+        <div class="slideshow-backdrop"></div>
+        <img id="slideshow-img" src="">
+        <p id="slideshow-caption"></p>
+        <div id="slideshow-controls">
+            <button id="slideshow-prev">←</button>
+            <button id="slideshow-close">✕</button>
+            <button id="slideshow-next">→</button>
+        </div>
+        <div id="slideshow-dots"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
