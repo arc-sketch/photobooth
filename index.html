@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Our Photobooth ❤</title>
+    <title>Our Photobooth — Realtime Photo Strip for Two</title>
+    <meta name="description" content="A realtime online photobooth for couples. Take photos together, apply fun effects, and build a shared gallery — no app needed, just open the link.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@700&family=Lobster&family=Permanent+Marker&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gun/lib/radix.js"></script>
@@ -23,25 +27,171 @@
     </div>
     <div id="notification-toast"></div>
 
-    <!-- LANDING -->
-    <div id="screen-landing" class="screen active">
-        <div class="landing-content">
-            <div class="hearts-bg">
-                <span>❤</span><span>💕</span><span>💖</span><span>❤</span><span>💕</span>
-            </div>
-            <h1 class="landing-title">Our Photobooth</h1>
-            <p class="landing-subtitle">Ready to make memories? 😉</p>
-            <button id="btn-enter" class="btn-primary">Enter 💕</button>
-        </div>
+    <!-- RIBBON -->
+    <div class="ribbon">
+        <span class="ribbon-in">&#9825; A realtime photobooth for two screens in two places</span>
     </div>
 
-    <!-- PHOTOBOOTH -->
+    <!-- STICKY NAV -->
+    <header class="bar" id="app-bar">
+        <div class="wrap">
+            <a class="brand" href="#">
+                <span class="dots"><i class="p"></i><i class="b"></i></span>
+                photobooth
+            </a>
+            <nav>
+                <a href="#" class="nav-link active" data-nav="home">Home</a>
+                <a href="#" class="nav-link" data-nav="booth">Open Booth</a>
+                <a href="#" class="nav-link" data-nav="gallery">Gallery</a>
+                <a href="#" class="nav-link" data-nav="exchange">Exchange</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==================== LANDING / HOME ==================== -->
+    <div id="screen-landing" class="screen active">
+        <!-- HERO -->
+        <section class="hero" id="top">
+            <div class="wrap">
+                <div class="hero-copy">
+                    <span class="eyebrow">made for two &middot; <b>realtime</b></span>
+                    <h1>A <span class="pink">Photo</span> Booth<br>for <span class="blue">Us</span></h1>
+                    <p class="lede">Take photos together from two different places. A shared countdown fires the shot on both screens at the same second, so every frame holds both of you.</p>
+                    <div class="cta-row">
+                        <button class="btn btn-grad" id="btn-enter">Open the booth <span class="arr">&#9655;</span></button>
+                        <a class="btn btn-ghost" href="#features">How it works</a>
+                    </div>
+                    <p class="assure"><span>&#9679; you</span> &nbsp;+&nbsp; <span>&#9679; me</span></p>
+                </div>
+
+                <div class="stage">
+                    <div class="strip" id="strip-preview">
+                        <div class="frame"><span class="num">01</span><div class="frame-placeholder">&#128248;</div></div>
+                        <div class="frame"><span class="num">02</span><div class="frame-placeholder">&#128248;</div></div>
+                        <div class="frame"><span class="num">03</span><div class="frame-placeholder">&#128248;</div></div>
+                        <div class="frame"><span class="num">04</span><div class="frame-placeholder">&#128248;</div></div>
+                        <div class="serial">us &middot; <b>LOVE</b></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="section" id="features">
+            <div class="wrap">
+                <div class="section-head">
+                    <div class="kicker">How it works</div>
+                    <h2>Three steps to your first strip.</h2>
+                </div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="seamline"></div>
+                        <div class="idx">01</div>
+                        <div class="ic"><svg viewBox="0 0 34 34" fill="none"><rect x="4" y="9" width="26" height="19" rx="3" stroke="#FF7BA3" stroke-width="2"/><circle cx="17" cy="18" r="5" stroke="#FF7BA3" stroke-width="2"/></svg></div>
+                        <h3>Open the booth</h3>
+                        <p>Allow camera access. Switch between front and back, pick a filter or AR effect.</p>
+                    </div>
+                    <div class="step">
+                        <div class="seamline"></div>
+                        <div class="idx">02</div>
+                        <div class="ic"><svg viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="12" stroke="#5FA0FF" stroke-width="2"/><path d="M17 10v7l5 3" stroke="#5FA0FF" stroke-width="2" stroke-linecap="round"/></svg></div>
+                        <h3>Strike a pose</h3>
+                        <p>3-2-1 countdown, then the shutter fires. Do a 4-pose strip or a single shot.</p>
+                    </div>
+                    <div class="step">
+                        <div class="seamline"></div>
+                        <div class="idx">03</div>
+                        <div class="ic"><svg viewBox="0 0 34 34" fill="none"><path d="M17 27S6 20 6 13a5 5 0 019-3 5 5 0 019 3c0 7-11 14-11 14z" stroke="#FF7BA3" stroke-width="2" stroke-linejoin="round"/></svg></div>
+                        <h3>Share it</h3>
+                        <p>Add stickers, text, a template. Save or share to the gallery for your partner to see.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES GRID -->
+        <section class="section">
+            <div class="wrap">
+                <div class="section-head">
+                    <div class="kicker">Everything you need</div>
+                    <h2>Built for <span class="grad">couples</span>, not content creators.</h2>
+                </div>
+                <div class="acts">
+                    <div class="act feature">
+                        <div class="ic"><svg viewBox="0 0 34 34" fill="none"><rect x="4" y="9" width="26" height="19" rx="3" stroke="#17181C" stroke-width="2"/><path d="M12 9l2-4h6l2 4" stroke="#17181C" stroke-width="2" stroke-linejoin="round"/><circle cx="17" cy="18" r="5" stroke="#FF7BA3" stroke-width="2"/><circle cx="26" cy="13" r="1.6" fill="#5FA0FF"/></svg></div>
+                        <div class="copy">
+                            <h3>Realtime Photobooth <span class="badge on">Always free</span></h3>
+                            <p>Both of you, one frame. No accounts needed — just open the link.</p>
+                        </div>
+                    </div>
+                    <div class="act">
+                        <div class="seamline"></div>
+                        <div class="ic"><svg viewBox="0 0 34 34" fill="none"><circle cx="10" cy="12" r="3" stroke="#FF7BA3" stroke-width="2"/><circle cx="24" cy="12" r="3" stroke="#5FA0FF" stroke-width="2"/><circle cx="17" cy="24" r="3" stroke="#FF7BA3" stroke-width="2"/><circle cx="8" cy="24" r="2" fill="#5FA0FF"/><circle cx="26" cy="24" r="2" fill="#FF7BA3"/></svg></div>
+                        <h3>13 AR Effects</h3>
+                        <p>Sparkles, hearts, crown, blush, sunglasses — face-tracked in real time.</p>
+                    </div>
+                    <div class="act">
+                        <div class="seamline"></div>
+                        <div class="ic"><svg viewBox="0 0 34 34" fill="none"><rect x="6" y="6" width="22" height="22" rx="3" stroke="#17181C" stroke-width="2"/><path d="M6 14h22M14 6v22" stroke="#5FA0FF" stroke-width="2"/></svg></div>
+                        <h3>Photo Strip</h3>
+                        <p>4-pose Korean-style strip. Countdown between each shot, progress dots.</p>
+                    </div>
+                    <div class="act">
+                        <div class="seamline"></div>
+                        <div class="ic"><svg viewBox="0 0 34 34" fill="none"><rect x="5" y="5" width="24" height="24" rx="3" stroke="#17181C" stroke-width="2"/><path d="M5 20l7-7 5 5 4-4 8 8" stroke="#FF7BA3" stroke-width="2" stroke-linejoin="round"/></svg></div>
+                        <h3>8 Filters</h3>
+                        <p>B&amp;W, sepia, vintage, warm, cool, rosy, dreamy — preview before you shoot.</p>
+                    </div>
+                    <div class="act">
+                        <div class="seamline"></div>
+                        <div class="ic"><svg viewBox="0 0 34 34" fill="none"><path d="M10 7a3.5 3.5 0 013.6 3.6c0 2.6-3.6 3.4-3.6 6" stroke="#5FA0FF" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="22" r="1.5" fill="#5FA0FF"/><path d="M24 7a3.5 3.5 0 013.6 3.6c0 2.6-3.6 3.4-3.6 6" stroke="#FF7BA3" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="22" r="1.5" fill="#FF7BA3"/></svg></div>
+                        <h3>11 Templates</h3>
+                        <p>Heart, polaroid, film strip, roses, starry night, pop art, and more.</p>
+                    </div>
+                    <div class="act">
+                        <div class="seamline"></div>
+                        <div class="ic"><svg viewBox="0 0 34 34" fill="none"><path d="M17 28S5 21 5 14a5 5 0 0110-1 5 5 0 0110 1c0 7-8 14-8 14z" stroke="#FF7BA3" stroke-width="2"/><circle cx="25" cy="10" r="2" fill="#5FA0FF"/></svg></div>
+                        <h3>Stickers &amp; Text</h3>
+                        <p>20 emoji stamps, 5 fonts, custom color &amp; size. Tap to place.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLOSING CTA -->
+        <section class="section closer">
+            <div class="wrap">
+                <h2>Ready to make <span class="grad">memories</span>?</h2>
+                <p>Open the booth, take a photo, and send it to each other. It's that simple.</p>
+                <div class="cta-row" style="justify-content:center; margin-top:32px;">
+                    <button class="btn btn-grad" id="btn-enter-2">Open the booth <span class="arr">&#9655;</span></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="wrap">
+                <a class="brand" href="#">
+                    <span class="dots"><i class="p"></i><i class="b"></i></span>
+                    photobooth
+                </a>
+                <span class="meta">Made with &#9825; for two screens in two places</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==================== PHOTOBOOTH ==================== -->
     <div id="screen-booth" class="screen">
-        <div class="booth-header">
-            <div class="booth-nav">
-                <button class="nav-tab active" data-view="camera">📸 Camera</button>
-                <button class="nav-tab" data-view="gallery">🖼 Gallery</button>
-                <button class="nav-tab" data-view="exchange">💌 Exchange</button>
+        <!-- BACK NAV -->
+        <div class="booth-topbar">
+            <div class="wrap booth-topbar-inner">
+                <a href="#" class="btn btn-ghost btn-sm" id="btn-back-home">&#8592; Home</a>
+                <div class="booth-tabs">
+                    <button class="booth-tab active" data-view="camera">Camera</button>
+                    <button class="booth-tab" data-view="gallery">Gallery</button>
+                    <button class="booth-tab" data-view="exchange">Exchange</button>
+                </div>
             </div>
         </div>
 
@@ -54,63 +204,74 @@
             </div>
 
             <div id="controls">
-                <div id="filter-bar">
-                    <button class="filter-btn active" data-filter="none">Normal</button>
-                    <button class="filter-btn" data-filter="grayscale">B&W</button>
-                    <button class="filter-btn" data-filter="sepia">Sepia</button>
-                    <button class="filter-btn" data-filter="vintage">Vintage</button>
-                    <button class="filter-btn" data-filter="warm">Warm</button>
-                    <button class="filter-btn" data-filter="cool">Cool</button>
-                    <button class="filter-btn" data-filter="rosy">Rosy</button>
-                    <button class="filter-btn" data-filter="dreamy">Dreamy</button>
+                <div class="control-section">
+                    <div class="control-label">Filters</div>
+                    <div id="filter-bar" class="pill-bar">
+                        <button class="pill active" data-filter="none">Normal</button>
+                        <button class="pill" data-filter="grayscale">B&amp;W</button>
+                        <button class="pill" data-filter="sepia">Sepia</button>
+                        <button class="pill" data-filter="vintage">Vintage</button>
+                        <button class="pill" data-filter="warm">Warm</button>
+                        <button class="pill" data-filter="cool">Cool</button>
+                        <button class="pill" data-filter="rosy">Rosy</button>
+                        <button class="pill" data-filter="dreamy">Dreamy</button>
+                    </div>
                 </div>
 
-                <div id="effect-bar">
-                    <button class="effect-btn active" data-effect="none">None</button>
-                    <button class="effect-btn" data-effect="sparkles">✨ Sparkles</button>
-                    <button class="effect-btn" data-effect="hearts">❤️ Hearts</button>
-                    <button class="effect-btn" data-effect="rainbow">🌈 Rainbow</button>
-                    <button class="effect-btn" data-effect="neon">💜 Neon</button>
-                    <button class="effect-btn" data-effect="stars">⭐ Stars</button>
-                    <button class="effect-btn" data-effect="confetti">🎊 Confetti</button>
-                    <button class="effect-btn" data-effect="butterflies">🦋 Cute</button>
-                    <button class="effect-btn" data-effect="glitter">💎 Glitter</button>
-                    <button class="effect-btn" data-effect="sunglasses">🕶 Sunglasses</button>
-                    <button class="effect-btn" data-effect="blush">😊 Blush</button>
-                    <button class="effect-btn" data-effect="dogface">🐶 Dog</button>
-                    <button class="effect-btn" data-effect="crown">👑 Crown</button>
+                <div class="control-section">
+                    <div class="control-label">Effects</div>
+                    <div id="effect-bar" class="pill-bar">
+                        <button class="pill active" data-effect="none">None</button>
+                        <button class="pill" data-effect="sparkles">Sparkles</button>
+                        <button class="pill" data-effect="hearts">Hearts</button>
+                        <button class="pill" data-effect="rainbow">Rainbow</button>
+                        <button class="pill" data-effect="neon">Neon</button>
+                        <button class="pill" data-effect="stars">Stars</button>
+                        <button class="pill" data-effect="confetti">Confetti</button>
+                        <button class="pill" data-effect="butterflies">Cute</button>
+                        <button class="pill" data-effect="glitter">Glitter</button>
+                        <button class="pill" data-effect="sunglasses">Sunglasses</button>
+                        <button class="pill" data-effect="blush">Blush</button>
+                        <button class="pill" data-effect="dogface">Dog</button>
+                        <button class="pill" data-effect="crown">Crown</button>
+                    </div>
                 </div>
 
-                <div id="capture-row">
-                    <button id="btn-mode-single" class="mode-btn active">Single</button>
-                    <button id="btn-mode-multi" class="mode-btn">4-Pose Strip</button>
+                <div class="control-section">
+                    <div class="control-label">Mode</div>
+                    <div id="capture-row" class="pill-bar">
+                        <button class="pill active" id="btn-mode-single" data-mode="single">Single</button>
+                        <button class="pill" id="btn-mode-multi" data-mode="multi">4-Pose Strip</button>
+                    </div>
                 </div>
 
-                <button id="capture-btn">
-                    <span class="shutter-ring"></span>
-                    <span class="shutter-inner"></span>
-                </button>
-
-                    <button id="switch-camera">Flip</button>
+                <div class="shutter-row">
+                    <button id="switch-camera" class="btn btn-ghost btn-sm">Flip</button>
+                    <button id="capture-btn">
+                        <span class="shutter-ring"></span>
+                        <span class="shutter-inner"></span>
+                    </button>
+                    <div style="width:60px"></div>
                 </div>
             </div>
+        </div>
 
         <!-- Preview Overlay -->
         <div id="preview-overlay" style="display:none;">
             <div id="preview-top">
                 <h2 id="preview-title">Nice shot!</h2>
-                <div id="template-selector">
-                    <button class="tpl-btn active" data-template="none">No Frame</button>
-                    <button class="tpl-btn" data-template="heart">Heart</button>
-                    <button class="tpl-btn" data-template="polaroid">Polaroid</button>
-                    <button class="tpl-btn" data-template="film">Film Strip</button>
-                    <button class="tpl-btn" data-template="roses">Roses</button>
-                    <button class="tpl-btn" data-template="starry">Starry</button>
-                    <button class="tpl-btn" data-template="blush">Blush</button>
-                    <button class="tpl-btn" data-template="vintage-frame">Vintage</button>
-                    <button class="tpl-btn" data-template="comic">Pop Art</button>
-                    <button class="tpl-btn" data-template="strip4">Photo Strip</button>
-                    <button class="tpl-btn" data-template="elegant">Elegant</button>
+                <div id="template-selector" class="pill-bar">
+                    <button class="pill active" data-template="none">No Frame</button>
+                    <button class="pill" data-template="heart">Heart</button>
+                    <button class="pill" data-template="polaroid">Polaroid</button>
+                    <button class="pill" data-template="film">Film Strip</button>
+                    <button class="pill" data-template="roses">Roses</button>
+                    <button class="pill" data-template="starry">Starry</button>
+                    <button class="pill" data-template="blush">Blush</button>
+                    <button class="pill" data-template="vintage-frame">Vintage</button>
+                    <button class="pill" data-template="comic">Pop Art</button>
+                    <button class="pill" data-template="strip4">Photo Strip</button>
+                    <button class="pill" data-template="elegant">Elegant</button>
                 </div>
             </div>
 
@@ -119,86 +280,66 @@
                 <canvas id="sticker-canvas"></canvas>
             </div>
 
-            <!-- Sticker Panel -->
-            <div id="sticker-panel">
-                <p class="panel-label">Tap a sticker, then tap the photo:</p>
-                <div id="sticker-list">
-                    <button class="sticker-btn" data-sticker="❤">❤</button>
-                    <button class="sticker-btn" data-sticker="💕">💕</button>
-                    <button class="sticker-btn" data-sticker="💖">💖</button>
-                    <button class="sticker-btn" data-sticker="✨">✨</button>
-                    <button class="sticker-btn" data-sticker="⭐">⭐</button>
-                    <button class="sticker-btn" data-sticker="🌟">🌟</button>
-                    <button class="sticker-btn" data-sticker="🦋">🦋</button>
-                    <button class="sticker-btn" data-sticker="🌸">🌸</button>
-                    <button class="sticker-btn" data-sticker="🌺">🌺</button>
-                    <button class="sticker-btn" data-sticker="👑">👑</button>
-                    <button class="sticker-btn" data-sticker="💍">💍</button>
-                    <button class="sticker-btn" data-sticker="🎵">🎵</button>
-                    <button class="sticker-btn" data-sticker="🕊">🕊</button>
-                    <button class="sticker-btn" data-sticker="🌹">🌹</button>
-                    <button class="sticker-btn" data-sticker="💐">💐</button>
-                    <button class="sticker-btn" data-sticker="🎂">🎂</button>
-                    <button class="sticker-btn" data-sticker="🍰">🍰</button>
-                    <button class="sticker-btn" data-sticker="🧸">🧸</button>
-                    <button class="sticker-btn" data-sticker="💋">💋</button>
-                    <button class="sticker-btn" data-sticker="🔥">🔥</button>
+            <div class="edit-panels">
+                <div id="sticker-panel" class="edit-panel">
+                    <div class="panel-label">Stickers — tap a sticker, then tap the photo</div>
+                    <div id="sticker-list" class="sticker-grid"></div>
+                    <button id="btn-clear-stickers" class="btn btn-ghost btn-sm">Clear</button>
                 </div>
-                <button id="btn-clear-stickers" class="btn-small">Clear Stickers</button>
-            </div>
 
-            <!-- Text Overlay Panel -->
-            <div id="text-panel">
-                <p class="panel-label">Add text on your photo:</p>
-                <div id="text-controls">
-                    <input type="text" id="overlay-text" placeholder="Type something cute...">
-                    <select id="text-font">
-                        <option value="Pacifico">Pacifico</option>
-                        <option value="Dancing Script">Dancing Script</option>
-                        <option value="Lobster">Lobster</option>
-                        <option value="Permanent Marker">Marker</option>
-                        <option value="Poppins">Poppins</option>
-                    </select>
-                    <input type="color" id="text-color" value="#ffffff">
-                    <input type="range" id="text-size" min="16" max="80" value="32">
+                <div id="text-panel" class="edit-panel">
+                    <div class="panel-label">Text overlay</div>
+                    <div id="text-controls">
+                        <input type="text" id="overlay-text" placeholder="Type something cute...">
+                        <select id="text-font">
+                            <option value="Space Mono">Space Mono</option>
+                            <option value="Pacifico">Pacifico</option>
+                            <option value="Dancing Script">Dancing Script</option>
+                            <option value="Lobster">Lobster</option>
+                            <option value="Permanent Marker">Marker</option>
+                            <option value="Poppins">Poppins</option>
+                        </select>
+                        <input type="color" id="text-color" value="#ffffff">
+                        <input type="range" id="text-size" min="16" max="80" value="32">
+                        <button id="btn-apply-text" class="btn btn-ghost btn-sm">Apply</button>
+                    </div>
                 </div>
-                <button id="btn-apply-text" class="btn-small">Apply Text</button>
             </div>
 
             <div class="caption-box">
                 <input type="text" id="photo-caption" placeholder="Add a caption... (optional)">
             </div>
             <div id="preview-actions">
-                <button id="download-btn">Download</button>
-                <button id="share-btn">Share 💕</button>
-                <button id="retake-btn">Retake</button>
+                <button id="retake-btn" class="btn btn-ghost">Retake</button>
+                <button id="download-btn" class="btn btn-ghost">Download</button>
+                <button id="share-btn" class="btn btn-grad">Share &#9825;</button>
             </div>
         </div>
 
         <!-- Gallery View -->
         <div id="view-gallery" class="view">
             <div class="gallery-header">
-                <h2>Our Memories 📸</h2>
+                <h2>Our Memories</h2>
                 <p id="photo-count">0 photos together</p>
-                <button id="btn-slideshow" class="btn-small">▶ Slideshow</button>
+                <button id="btn-slideshow" class="btn btn-ghost btn-sm">Slideshow</button>
             </div>
             <div id="gallery-grid"></div>
             <div id="gallery-empty" class="empty-state">
-                <span class="empty-icon">📷</span>
-                <p>No photos yet! Take your first one together.</p>
+                <div class="empty-icon">&#128247;</div>
+                <p>No photos yet. Take your first one together.</p>
             </div>
         </div>
 
         <!-- Exchange View -->
         <div id="view-exchange" class="view">
             <div class="exchange-header">
-                <h2>Photo Exchange 💌</h2>
+                <h2>Photo Exchange</h2>
             </div>
             <div id="exchange-messages"></div>
             <div class="exchange-input-area">
-                <button id="btn-send-photo" class="btn-small">📸</button>
+                <button id="btn-send-photo" class="btn btn-ghost btn-sm">&#128247;</button>
                 <input type="text" id="exchange-text" placeholder="Send a message...">
-                <button id="btn-send-text" class="btn-primary btn-send">Send</button>
+                <button id="btn-send-text" class="btn btn-grad btn-sm">Send</button>
             </div>
         </div>
     </div>
@@ -212,15 +353,15 @@
             <p id="modal-caption"></p>
             <p id="modal-by"></p>
             <div id="modal-reactions">
-                <button class="react-btn" data-react="❤">❤</button>
-                <button class="react-btn" data-react="😍">😍</button>
-                <button class="react-btn" data-react="🥰">🥰</button>
-                <button class="react-btn" data-react="😘">😘</button>
-                <button class="react-btn" data-react="🔥">🔥</button>
-                <button class="react-btn" data-react="💯">💯</button>
+                <button class="react-btn" data-react="&#10084;">&#10084;</button>
+                <button class="react-btn" data-react="&#128525;">&#128525;</button>
+                <button class="react-btn" data-react="&#129392;">&#129392;</button>
+                <button class="react-btn" data-react="&#128536;">&#128536;</button>
+                <button class="react-btn" data-react="&#128293;">&#128293;</button>
+                <button class="react-btn" data-react="&#128176;">&#128176;</button>
             </div>
             <div id="modal-reaction-list"></div>
-            <button id="modal-download" class="btn-small">Download</button>
+            <button id="modal-download" class="btn btn-ghost btn-sm">Download</button>
         </div>
     </div>
 
@@ -230,9 +371,9 @@
         <img id="slideshow-img" src="">
         <p id="slideshow-caption"></p>
         <div id="slideshow-controls">
-            <button id="slideshow-prev">←</button>
-            <button id="slideshow-close">✕</button>
-            <button id="slideshow-next">→</button>
+            <button id="slideshow-prev">&#8592;</button>
+            <button id="slideshow-close">&#10005;</button>
+            <button id="slideshow-next">&#8594;</button>
         </div>
         <div id="slideshow-dots"></div>
     </div>
