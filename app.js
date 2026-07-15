@@ -92,10 +92,10 @@ function showScreen(name) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     if (name === 'home') {
         $('screen-landing').classList.add('active');
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.dataset.nav === 'home'));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (name === 'booth') {
         $('screen-booth').classList.add('active');
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.dataset.nav === 'booth'));
+        window.scrollTo({ top: 0 });
         init();
     }
 }
@@ -107,14 +107,36 @@ $('btn-enter-4').addEventListener('click', () => showScreen('booth'));
 $('btn-back-home').addEventListener('click', (e) => { e.preventDefault(); showScreen('home'); });
 $('nav-open-booth').addEventListener('click', () => { showScreen('booth'); switchView('camera'); });
 
+// Nav links: scroll to section on landing, or navigate to booth views
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const landing = $('screen-landing');
+            if (!landing.classList.contains('active')) showScreen('home');
+            setTimeout(() => {
+                const target = document.querySelector(href);
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+        }
+    });
+});
+
+// Hero CTA buttons and brand link: handle anchor scroll from any screen
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    if (link.classList.contains('nav-link')) return; // already handled
+    link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
         e.preventDefault();
-        const nav = link.dataset.nav;
-        if (nav === 'home') showScreen('home');
-        else if (nav === 'booth') { showScreen('booth'); switchView('camera'); }
-        else if (nav === 'gallery') { showScreen('booth'); switchView('gallery'); }
-        else if (nav === 'exchange') { showScreen('booth'); switchView('exchange'); }
+        const landing = $('screen-landing');
+        if (!landing.classList.contains('active')) showScreen('home');
+        setTimeout(() => {
+            const target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            else window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 50);
     });
 });
 
@@ -128,9 +150,6 @@ function switchView(name) {
     const view = $('view-' + name);
     if (view) view.classList.add('active');
     document.querySelectorAll('.booth-tab').forEach(t => t.classList.toggle('active', t.dataset.view === name));
-    document.querySelectorAll('.nav-link').forEach(l => {
-        l.classList.toggle('active', l.dataset.nav === name);
-    });
 }
 
 // ============================================================
