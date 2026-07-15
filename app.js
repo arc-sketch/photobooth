@@ -35,7 +35,7 @@ const resultCanvas = $('result-canvas');
 const resultCtx = resultCanvas.getContext('2d');
 const stickerCanvas = $('sticker-canvas');
 const stickerCtx = stickerCanvas.getContext('2d');
-const flash = $('flash');
+const flash = $('flash-global');
 const countdownOverlay = $('countdown-overlay');
 const countdownNumber = $('countdown-number');
 const toast = $('notification-toast');
@@ -102,7 +102,9 @@ function showScreen(name) {
 
 $('btn-enter').addEventListener('click', () => showScreen('booth'));
 $('btn-enter-2').addEventListener('click', () => showScreen('booth'));
+$('btn-enter-3').addEventListener('click', () => showScreen('booth'));
 $('btn-back-home').addEventListener('click', (e) => { e.preventDefault(); showScreen('home'); });
+$('nav-open-booth').addEventListener('click', () => { showScreen('booth'); switchView('camera'); });
 
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', (e) => {

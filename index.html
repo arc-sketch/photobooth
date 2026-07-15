@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#F8F9FB">
     <title>Our Photobooth — Realtime Photo Strip for Two</title>
-    <meta name="description" content="A realtime online photobooth for couples. Take photos together, apply fun effects, and build a shared gallery — no app needed, just open the link.">
+    <meta name="description" content="A realtime online photobooth for long distance couples. Both partners captured in the same frame, Korean-style photo strip. No app, just a link.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -20,7 +21,7 @@
 </head>
 <body>
 
-    <div id="flash"></div>
+    <div id="flash-global"></div>
     <div id="countdown-overlay">
         <span id="countdown-number">3</span>
         <div id="multi-pose-progress"></div>
@@ -29,48 +30,89 @@
 
     <!-- RIBBON -->
     <div class="ribbon">
-        <span class="ribbon-in">&#9825; A realtime photobooth for two screens in two places</span>
+        <span class="ribbon-in">&#9825; Making long distance couples take photos like they're in the same room</span>
     </div>
 
     <!-- STICKY NAV -->
-    <header class="bar" id="app-bar">
+    <header class="bar">
         <div class="wrap">
-            <a class="brand" href="#">
-                <span class="dots"><i class="p"></i><i class="b"></i></span>
-                photobooth
-            </a>
+            <a class="brand" href="#top">photobooth<span class="dots"><i class="p"></i><i class="b"></i></span></a>
             <nav>
-                <a href="#" class="nav-link active" data-nav="home">Home</a>
-                <a href="#" class="nav-link" data-nav="booth">Open Booth</a>
-                <a href="#" class="nav-link" data-nav="gallery">Gallery</a>
-                <a href="#" class="nav-link" data-nav="exchange">Exchange</a>
+                <a href="#features" class="nav-link">How it Works</a>
+                <a href="#features-grid" class="nav-link">Features</a>
+                <button class="btn btn-grad cta-nav" id="nav-open-booth">Open the booth <span class="arr">&#9655;</span></button>
             </nav>
         </div>
     </header>
 
-    <!-- ==================== LANDING / HOME ==================== -->
+    <!-- ==================== LANDING ==================== -->
     <div id="screen-landing" class="screen active">
+
         <!-- HERO -->
         <section class="hero" id="top">
             <div class="wrap">
                 <div class="hero-copy">
-                    <span class="eyebrow">made for two &middot; <b>realtime</b></span>
-                    <h1>A <span class="pink">Photo</span> Booth<br>for <span class="blue">Us</span></h1>
-                    <p class="lede">Take photos together from two different places. A shared countdown fires the shot on both screens at the same second, so every frame holds both of you.</p>
+                    <span class="eyebrow">made for two &middot; <b>realtime photobooth</b></span>
+                    <h1>A <span class="pink">Photo</span> Strip<br>for <span class="blue">Us</span></h1>
+                    <p class="lede">Take photos together from two different places. A shared countdown fires the shot on both screens at the same second, then builds a Korean-style photo strip you both keep.</p>
                     <div class="cta-row">
                         <button class="btn btn-grad" id="btn-enter">Open the booth <span class="arr">&#9655;</span></button>
                         <a class="btn btn-ghost" href="#features">How it works</a>
                     </div>
+                    <p class="platforms">
+                        <span class="plat-label">works on</span>
+                        <span class="plat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c2.6 2.5 3.9 5.6 3.9 9S14.6 18.5 12 21c-2.6-2.5-3.9-5.6-3.9-9S9.4 5.5 12 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg> Web</span>
+                        <span class="plat"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M7.2 8.6h9.6c.4 0 .7.3.7.7v6.9a2 2 0 0 1-2 2h-.4v2.6a1.1 1.1 0 1 1-2.2 0v-2.6h-1.8v2.6a1.1 1.1 0 1 1-2.2 0v-2.6h-.4a2 2 0 0 1-2-2V9.3c0-.4.3-.7.7-.7zM4.4 9.1c.6 0 1.1.5 1.1 1.1v4.6a1.1 1.1 0 1 1-2.2 0v-4.6c0-.6.5-1.1 1.1-1.1zm15.2 0c.6 0 1.1.5 1.1 1.1v4.6a1.1 1.1 0 1 1-2.2 0v-4.6c0-.6.5-1.1 1.1-1.1z"/></svg> Android</span>
+                        <span class="plat"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16.7 12.9c0-2 1.6-3 1.7-3.1-1-1.4-2.4-1.6-2.9-1.6-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7-1.4 0-2.6.8-3.3 2-1.4 2.4-.4 6 1 8 .7 1 1.5 2.1 2.5 2 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.4-2 .8-1.1 1.1-2.2 1.1-2.3 0 0-2.1-.8-2.1-3z"/></svg> iOS</span>
+                    </p>
                     <p class="assure"><span>&#9679; you</span> &nbsp;+&nbsp; <span>&#9679; me</span></p>
                 </div>
 
                 <div class="stage">
-                    <div class="strip" id="strip-preview">
-                        <div class="frame"><span class="num">01</span><div class="frame-placeholder">&#128248;</div></div>
-                        <div class="frame"><span class="num">02</span><div class="frame-placeholder">&#128248;</div></div>
-                        <div class="frame"><span class="num">03</span><div class="frame-placeholder">&#128248;</div></div>
-                        <div class="frame"><span class="num">04</span><div class="frame-placeholder">&#128248;</div></div>
+                    <div class="strip" id="strip">
+                        <div class="frame"><span class="num">01</span><div class="frame-ph"><span>&#128248;</span></div></div>
+                        <div class="frame"><span class="num">02</span><div class="frame-ph"><span>&#128522;</span></div></div>
+                        <div class="frame"><span class="num">03</span><div class="frame-ph"><span>&#128525;</span></div></div>
+                        <div class="frame"><span class="num">04</span><div class="frame-ph"><span>&#129321;</span></div></div>
                         <div class="serial">us &middot; <b>LOVE</b></div>
+                    </div>
+                    <div class="strip" id="strip2" aria-hidden="true">
+                        <div class="frame lit"><span class="num">01</span><div class="frame-ph" style="background:linear-gradient(135deg,var(--blue-tint),var(--pink-tint))"><span>&#128247;</span></div></div>
+                        <div class="frame lit"><span class="num">02</span><div class="frame-ph" style="background:linear-gradient(135deg,var(--pink-tint),var(--blue-tint))"><span>&#128522;</span></div></div>
+                        <div class="frame lit"><span class="num">03</span><div class="frame-ph" style="background:linear-gradient(135deg,var(--blue-tint),var(--pink-tint))"><span>&#128525;</span></div></div>
+                        <div class="frame lit"><span class="num">04</span><div class="frame-ph" style="background:linear-gradient(135deg,var(--pink-tint),var(--blue-tint))"><span>&#129321;</span></div></div>
+                        <div class="serial">us &middot; <b>4EVER</b></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLOSER CTA -->
+        <section class="section closer">
+            <div class="wrap">
+                <h2>Ready to make <span class="grad">memories</span>?</h2>
+                <p>Open the booth, take a photo, and share it. It's that simple.</p>
+                <div class="cta-row">
+                    <button class="btn btn-grad" id="btn-enter-2">Open the booth <span class="arr">&#9655;</span></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="section stats" id="stats">
+            <div class="wrap">
+                <div class="statgrid">
+                    <div class="stat">
+                        <div class="n" id="stat-dates">0</div>
+                        <div class="l">photos taken</div>
+                    </div>
+                    <div class="stat">
+                        <div class="n" id="stat-effects">13</div>
+                        <div class="l">AR effects</div>
+                    </div>
+                    <div class="stat">
+                        <div class="n" id="stat-templates">11</div>
+                        <div class="l">templates</div>
                     </div>
                 </div>
             </div>
@@ -89,14 +131,14 @@
                         <div class="idx">01</div>
                         <div class="ic"><svg viewBox="0 0 34 34" fill="none"><rect x="4" y="9" width="26" height="19" rx="3" stroke="#FF7BA3" stroke-width="2"/><circle cx="17" cy="18" r="5" stroke="#FF7BA3" stroke-width="2"/></svg></div>
                         <h3>Open the booth</h3>
-                        <p>Allow camera access. Switch between front and back, pick a filter or AR effect.</p>
+                        <p>Allow camera access. Switch between front and back, pick a filter or face-tracked AR effect.</p>
                     </div>
                     <div class="step">
                         <div class="seamline"></div>
                         <div class="idx">02</div>
                         <div class="ic"><svg viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="12" stroke="#5FA0FF" stroke-width="2"/><path d="M17 10v7l5 3" stroke="#5FA0FF" stroke-width="2" stroke-linecap="round"/></svg></div>
                         <h3>Strike a pose</h3>
-                        <p>3-2-1 countdown, then the shutter fires. Do a 4-pose strip or a single shot.</p>
+                        <p>3-2-1 countdown, then the shutter fires. Do a single shot or a 4-pose strip.</p>
                     </div>
                     <div class="step">
                         <div class="seamline"></div>
@@ -110,7 +152,7 @@
         </section>
 
         <!-- FEATURES GRID -->
-        <section class="section">
+        <section class="section" id="features-grid">
             <div class="wrap">
                 <div class="section-head">
                     <div class="kicker">Everything you need</div>
@@ -118,17 +160,18 @@
                 </div>
                 <div class="acts">
                     <div class="act feature">
+                        <div class="seamline"></div>
                         <div class="ic"><svg viewBox="0 0 34 34" fill="none"><rect x="4" y="9" width="26" height="19" rx="3" stroke="#17181C" stroke-width="2"/><path d="M12 9l2-4h6l2 4" stroke="#17181C" stroke-width="2" stroke-linejoin="round"/><circle cx="17" cy="18" r="5" stroke="#FF7BA3" stroke-width="2"/><circle cx="26" cy="13" r="1.6" fill="#5FA0FF"/></svg></div>
                         <div class="copy">
                             <h3>Realtime Photobooth <span class="badge on">Always free</span></h3>
-                            <p>Both of you, one frame. No accounts needed — just open the link.</p>
+                            <p>Both of you, one frame. No accounts needed &mdash; just open the link.</p>
                         </div>
                     </div>
                     <div class="act">
                         <div class="seamline"></div>
                         <div class="ic"><svg viewBox="0 0 34 34" fill="none"><circle cx="10" cy="12" r="3" stroke="#FF7BA3" stroke-width="2"/><circle cx="24" cy="12" r="3" stroke="#5FA0FF" stroke-width="2"/><circle cx="17" cy="24" r="3" stroke="#FF7BA3" stroke-width="2"/><circle cx="8" cy="24" r="2" fill="#5FA0FF"/><circle cx="26" cy="24" r="2" fill="#FF7BA3"/></svg></div>
                         <h3>13 AR Effects</h3>
-                        <p>Sparkles, hearts, crown, blush, sunglasses — face-tracked in real time.</p>
+                        <p>Sparkles, hearts, crown, blush, sunglasses &mdash; face-tracked in real time.</p>
                     </div>
                     <div class="act">
                         <div class="seamline"></div>
@@ -140,7 +183,7 @@
                         <div class="seamline"></div>
                         <div class="ic"><svg viewBox="0 0 34 34" fill="none"><rect x="5" y="5" width="24" height="24" rx="3" stroke="#17181C" stroke-width="2"/><path d="M5 20l7-7 5 5 4-4 8 8" stroke="#FF7BA3" stroke-width="2" stroke-linejoin="round"/></svg></div>
                         <h3>8 Filters</h3>
-                        <p>B&amp;W, sepia, vintage, warm, cool, rosy, dreamy — preview before you shoot.</p>
+                        <p>B&amp;W, sepia, vintage, warm, cool, rosy, dreamy &mdash; preview live.</p>
                     </div>
                     <div class="act">
                         <div class="seamline"></div>
@@ -161,10 +204,10 @@
         <!-- CLOSING CTA -->
         <section class="section closer">
             <div class="wrap">
-                <h2>Ready to make <span class="grad">memories</span>?</h2>
-                <p>Open the booth, take a photo, and send it to each other. It's that simple.</p>
-                <div class="cta-row" style="justify-content:center; margin-top:32px;">
-                    <button class="btn btn-grad" id="btn-enter-2">Open the booth <span class="arr">&#9655;</span></button>
+                <h2>Pick tonight's <span class="grad">photo</span>.</h2>
+                <p>Open the booth and start shooting. Your partner sees every photo in real time.</p>
+                <div class="cta-row">
+                    <button class="btn btn-grad" id="btn-enter-3">Open the booth <span class="arr">&#9655;</span></button>
                 </div>
             </div>
         </section>
@@ -172,10 +215,7 @@
         <!-- FOOTER -->
         <footer>
             <div class="wrap">
-                <a class="brand" href="#">
-                    <span class="dots"><i class="p"></i><i class="b"></i></span>
-                    photobooth
-                </a>
+                <a class="brand" href="#top">photobooth<span class="dots"><i class="p"></i><i class="b"></i></span></a>
                 <span class="meta">Made with &#9825; for two screens in two places</span>
             </div>
         </footer>
@@ -183,7 +223,6 @@
 
     <!-- ==================== PHOTOBOOTH ==================== -->
     <div id="screen-booth" class="screen">
-        <!-- BACK NAV -->
         <div class="booth-topbar">
             <div class="wrap booth-topbar-inner">
                 <a href="#" class="btn btn-ghost btn-sm" id="btn-back-home">&#8592; Home</a>
@@ -195,14 +234,12 @@
             </div>
         </div>
 
-        <!-- Camera View -->
         <div id="view-camera" class="view active">
             <div id="camera-container">
                 <video id="camera" autoplay playsinline></video>
                 <canvas id="effect-canvas"></canvas>
                 <canvas id="capture-canvas" style="display:none;"></canvas>
             </div>
-
             <div id="controls">
                 <div class="control-section">
                     <div class="control-label">Filters</div>
@@ -217,7 +254,6 @@
                         <button class="pill" data-filter="dreamy">Dreamy</button>
                     </div>
                 </div>
-
                 <div class="control-section">
                     <div class="control-label">Effects</div>
                     <div id="effect-bar" class="pill-bar">
@@ -236,27 +272,21 @@
                         <button class="pill" data-effect="crown">Crown</button>
                     </div>
                 </div>
-
                 <div class="control-section">
                     <div class="control-label">Mode</div>
                     <div id="capture-row" class="pill-bar">
-                        <button class="pill active" id="btn-mode-single" data-mode="single">Single</button>
-                        <button class="pill" id="btn-mode-multi" data-mode="multi">4-Pose Strip</button>
+                        <button class="pill active" id="btn-mode-single">Single</button>
+                        <button class="pill" id="btn-mode-multi">4-Pose Strip</button>
                     </div>
                 </div>
-
                 <div class="shutter-row">
                     <button id="switch-camera" class="btn btn-ghost btn-sm">Flip</button>
-                    <button id="capture-btn">
-                        <span class="shutter-ring"></span>
-                        <span class="shutter-inner"></span>
-                    </button>
+                    <button id="capture-btn"><span class="shutter-ring"></span><span class="shutter-inner"></span></button>
                     <div style="width:60px"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Preview Overlay -->
         <div id="preview-overlay" style="display:none;">
             <div id="preview-top">
                 <h2 id="preview-title">Nice shot!</h2>
@@ -274,19 +304,16 @@
                     <button class="pill" data-template="elegant">Elegant</button>
                 </div>
             </div>
-
             <div id="result-wrapper">
                 <canvas id="result-canvas"></canvas>
                 <canvas id="sticker-canvas"></canvas>
             </div>
-
             <div class="edit-panels">
                 <div id="sticker-panel" class="edit-panel">
-                    <div class="panel-label">Stickers — tap a sticker, then tap the photo</div>
+                    <div class="panel-label">Stickers &mdash; tap a sticker, then tap the photo</div>
                     <div id="sticker-list" class="sticker-grid"></div>
                     <button id="btn-clear-stickers" class="btn btn-ghost btn-sm">Clear</button>
                 </div>
-
                 <div id="text-panel" class="edit-panel">
                     <div class="panel-label">Text overlay</div>
                     <div id="text-controls">
@@ -297,7 +324,6 @@
                             <option value="Dancing Script">Dancing Script</option>
                             <option value="Lobster">Lobster</option>
                             <option value="Permanent Marker">Marker</option>
-                            <option value="Poppins">Poppins</option>
                         </select>
                         <input type="color" id="text-color" value="#ffffff">
                         <input type="range" id="text-size" min="16" max="80" value="32">
@@ -305,7 +331,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="caption-box">
                 <input type="text" id="photo-caption" placeholder="Add a caption... (optional)">
             </div>
@@ -316,7 +341,6 @@
             </div>
         </div>
 
-        <!-- Gallery View -->
         <div id="view-gallery" class="view">
             <div class="gallery-header">
                 <h2>Our Memories</h2>
@@ -330,11 +354,8 @@
             </div>
         </div>
 
-        <!-- Exchange View -->
         <div id="view-exchange" class="view">
-            <div class="exchange-header">
-                <h2>Photo Exchange</h2>
-            </div>
+            <div class="exchange-header"><h2>Photo Exchange</h2></div>
             <div id="exchange-messages"></div>
             <div class="exchange-input-area">
                 <button id="btn-send-photo" class="btn btn-ghost btn-sm">&#128247;</button>
