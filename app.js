@@ -103,6 +103,7 @@ function showScreen(name) {
 $('btn-enter').addEventListener('click', () => showScreen('booth'));
 $('btn-enter-2').addEventListener('click', () => showScreen('booth'));
 $('btn-enter-3').addEventListener('click', () => showScreen('booth'));
+$('btn-enter-4').addEventListener('click', () => showScreen('booth'));
 $('btn-back-home').addEventListener('click', (e) => { e.preventDefault(); showScreen('home'); });
 $('nav-open-booth').addEventListener('click', () => { showScreen('booth'); switchView('camera'); });
 

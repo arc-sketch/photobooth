@@ -201,13 +201,116 @@
             </div>
         </section>
 
-        <!-- CLOSING CTA -->
-        <section class="section closer">
+        <!-- SEE IT IN ACTION -->
+        <section class="section" id="demo">
+            <div class="wrap">
+                <div class="section-head center">
+                    <div class="kicker">See it in action</div>
+                    <h2>One countdown. Two screens. One frame.</h2>
+                </div>
+                <div class="demo-visual">
+                    <div class="demo-phone pink-phone">
+                        <div class="demo-notch"></div>
+                        <div class="demo-screen">
+                            <div class="demo-camera-icon">&#128247;</div>
+                            <div class="demo-label">You</div>
+                            <div class="demo-status">3... 2... 1... &#128248;</div>
+                        </div>
+                    </div>
+                    <div class="demo-sync">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" stroke="url(#syncGrad)" stroke-width="2"/><path d="M16 24l5 5 11-11" stroke="url(#syncGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="syncGrad" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#FF7BA3"/><stop offset="1" stop-color="#5FA0FF"/></linearGradient></defs></svg>
+                        <span class="demo-sync-label">synced</span>
+                    </div>
+                    <div class="demo-phone blue-phone">
+                        <div class="demo-notch"></div>
+                        <div class="demo-screen">
+                            <div class="demo-camera-icon">&#128247;</div>
+                            <div class="demo-label">Me</div>
+                            <div class="demo-status">3... 2... 1... &#128248;</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="demo-desc">One person opens the booth and sends the link. You both see the same countdown, the shutter fires at the same second, and your photos merge into one strip &mdash; even though you're in different places.</p>
+            </div>
+        </section>
+
+        <!-- SHOP / PRINT STRIPS -->
+        <section class="section" id="shop">
+            <div class="wrap">
+                <div class="shop-card">
+                    <div class="shop-visual">
+                        <div class="shop-strip-preview">
+                            <div class="mini-frame">&#128248;</div>
+                            <div class="mini-frame">&#128522;</div>
+                            <div class="mini-frame">&#128525;</div>
+                        </div>
+                    </div>
+                    <div class="shop-copy">
+                        <span class="badge hot">Keepsakes</span>
+                        <h2>Preserve your LDR memories by printing your photobooth strips.</h2>
+                        <p>Turn today's session into something you can actually hold. Save your strips as high-res images, print them as magnets, stickers, or framed prints &mdash; and ship one to each of you, so the same memory lives on both your walls.</p>
+                        <ul class="shop-perks">
+                            <li>HD export at full resolution</li>
+                            <li>Print-ready crop guides</li>
+                            <li>Works with any print shop</li>
+                        </ul>
+                        <button class="btn btn-grad" id="btn-enter-4">Open the booth <span class="arr">&#9655;</span></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" id="faq">
+            <div class="wrap">
+                <div class="section-head center">
+                    <div class="kicker">Questions</div>
+                    <h2>Good to know.</h2>
+                </div>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>What is this photobooth? <span class="faq-icon">+</span></summary>
+                        <div class="faq-body">A realtime online photobooth for two people in different places. A shared countdown fires the shot on both screens at the same second, then builds a Korean-style photo strip you both keep. No app, no sign-up, just a link.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Is it free? <span class="faq-icon">+</span></summary>
+                        <div class="faq-body">Yes. The photobooth is always free. Open the booth, take photos, apply effects and templates, share to the gallery &mdash; no account needed.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>How does the realtime sync work? <span class="faq-icon">+</span></summary>
+                        <div class="faq-body">We use Gun.js, a peer-to-peer database. Both of you connect to the same shared namespace, so photos, reactions, and messages sync instantly across both screens without any server sign-up.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Do we need to install an app? <span class="faq-icon">+</span></summary>
+                        <div class="faq-body">No. The photobooth runs right in the browser on phone or laptop &mdash; nothing to download. Just allow camera access and you're good to go.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Is the photobooth like 인생네컷 / Life4Cuts? <span class="faq-icon">+</span></summary>
+                        <div class="faq-body">Yes &mdash; it's built in the Korean Life4Cuts (인생네컷) style, but online and made for two people in different places. You get the same clean photo strip you'd print from a physical booth.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>What AR effects are available? <span class="faq-icon">+</span></summary>
+                        <div class="faq-body">13 face-tracked effects: sparkles, hearts, rainbow, neon, stars, confetti, butterflies, glitter, sunglasses, blush, dog face, and crown. They track your face in real time using face-api.js.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can we use it on different devices? <span class="faq-icon">+</span></summary>
+                        <div class="faq-body">Yes. One person can be on an iPhone and the other on an Android or laptop. As long as both open the same link, everything syncs in real time.</div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLOSING CTA (have a code?) -->
+        <section class="section closer" id="closing">
             <div class="wrap">
                 <h2>Pick tonight's <span class="grad">photo</span>.</h2>
                 <p>Open the booth and start shooting. Your partner sees every photo in real time.</p>
-                <div class="cta-row">
+                <div class="cta-row center">
                     <button class="btn btn-grad" id="btn-enter-3">Open the booth <span class="arr">&#9655;</span></button>
+                </div>
+                <div class="have-code">
+                    <span class="have-code-label">have a code?</span>
+                    <span class="have-code-val">share link</span>
                 </div>
             </div>
         </section>

@@ -543,6 +543,127 @@ footer .meta { font-family: var(--font-mono); font-size: 12px; color: var(--ink-
 .filter-rosy { filter: saturate(1.3) hue-rotate(-10deg) brightness(1.05); }
 .filter-dreamy { filter: contrast(.85) brightness(1.15) saturate(1.2); }
 
+/* ============ SEE IT IN ACTION ============ */
+.demo-visual {
+  display: flex; align-items: center; justify-content: center; gap: 28px;
+  margin: 40px 0 32px; flex-wrap: wrap;
+}
+.demo-phone {
+  width: 160px; height: 280px; border-radius: 20px;
+  border: 2px solid var(--line); background: var(--paper-raised);
+  display: flex; flex-direction: column; align-items: center;
+  padding: 12px 10px 16px; position: relative;
+  box-shadow: var(--shadow);
+}
+.pink-phone { border-color: var(--pink); }
+.blue-phone { border-color: var(--blue); }
+.demo-notch {
+  width: 50px; height: 6px; border-radius: 3px;
+  background: var(--line); margin-bottom: 14px;
+}
+.demo-screen {
+  flex: 1; width: 100%; border-radius: 10px;
+  background: var(--paper); display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+}
+.demo-camera-icon { font-size: 2rem; opacity: .3; }
+.demo-label {
+  font-family: var(--font-display); font-weight: 700; font-size: 15px;
+}
+.pink-phone .demo-label { color: var(--pink); }
+.blue-phone .demo-label { color: var(--blue); }
+.demo-status {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--ink-soft); letter-spacing: .05em;
+}
+.demo-sync {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.demo-sync-label {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--ink-soft);
+}
+.demo-desc {
+  max-width: 56ch; margin: 0 auto; text-align: center;
+  color: var(--ink-soft); font-size: 15px; line-height: 1.6;
+}
+
+/* ============ SHOP / PRINT STRIPS ============ */
+.shop-card {
+  display: grid; grid-template-columns: .45fr .55fr; gap: 48px;
+  align-items: center;
+  background: var(--paper-raised); border: 1px solid var(--line);
+  border-radius: 12px; padding: 40px 36px;
+}
+.shop-visual { display: flex; justify-content: center; }
+.shop-strip-preview {
+  display: flex; gap: 8px;
+}
+.mini-frame {
+  width: 72px; height: 96px; border-radius: 6px;
+  background: var(--paper); border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; box-shadow: var(--shadow);
+}
+.mini-frame:nth-child(1) { transform: rotate(-3deg); }
+.mini-frame:nth-child(2) { transform: rotate(1deg) translateY(-6px); }
+.mini-frame:nth-child(3) { transform: rotate(4deg); }
+.shop-copy { display: flex; flex-direction: column; gap: 12px; }
+.shop-copy h2 { font-size: clamp(22px, 3vw, 30px); }
+.shop-copy p { color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
+.shop-perks {
+  list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px;
+}
+.shop-perks li {
+  font-size: 14px; color: var(--ink-soft);
+  padding-left: 20px; position: relative;
+}
+.shop-perks li::before {
+  content: "✓"; position: absolute; left: 0;
+  color: var(--pink); font-weight: 700;
+}
+
+/* ============ FAQ ============ */
+.faq-list { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+.faq-item summary {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 0; cursor: pointer; font-family: var(--font-display);
+  font-weight: 600; font-size: 16px; color: var(--ink);
+  list-style: none; transition: color .15s;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--pink); }
+.faq-icon {
+  font-family: var(--font-mono); font-size: 18px;
+  color: var(--ink-soft); transition: transform .2s;
+  width: 24px; text-align: center; flex-shrink: 0;
+}
+.faq-item[open] .faq-icon { transform: rotate(45deg); }
+.faq-body {
+  padding: 0 0 18px; color: var(--ink-soft);
+  font-size: 14.5px; line-height: 1.65;
+}
+.section-head.center { text-align: center; max-width: 100%; }
+
+/* ============ HAVE CODE ============ */
+.have-code {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; margin-top: 28px;
+  font-family: var(--font-mono); font-size: 12px;
+  letter-spacing: .12em; color: var(--ink-soft);
+}
+.have-code-label { text-transform: uppercase; }
+.have-code-val {
+  padding: 5px 12px; border: 1px solid var(--line);
+  border-radius: 4px; background: var(--paper-raised);
+  font-family: var(--font-mono); font-size: 13px;
+  letter-spacing: .15em; color: var(--ink); text-transform: uppercase;
+}
+.cta-row.center { justify-content: center; }
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 880px) {
   .hero .wrap { grid-template-columns: 1fr; gap: 40px; padding-top: 48px; padding-bottom: 60px; }
@@ -551,6 +672,9 @@ footer .meta { font-family: var(--font-mono); font-size: 12px; color: var(--ink-
   .steps { grid-template-columns: 1fr; }
   .acts { grid-template-columns: repeat(2,1fr); gap: 12px; }
   .bar nav a { display: none; }
+  .shop-card { grid-template-columns: 1fr; gap: 28px; padding: 28px 24px; }
+  .demo-visual { gap: 16px; }
+  .demo-phone { width: 130px; height: 230px; }
 }
 
 @media (max-width: 560px) {
@@ -566,6 +690,13 @@ footer .meta { font-family: var(--font-mono); font-size: 12px; color: var(--ink-
   #gallery-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
   .exchange-msg { max-width: 88%; }
   .sticker-btn { width: 32px; height: 32px; font-size: .95rem; }
+  .demo-phone { width: 110px; height: 200px; border-radius: 16px; }
+  .demo-sync svg { width: 36px; height: 36px; }
+  .shop-card { padding: 24px 18px; }
+  .shop-copy h2 { font-size: 20px; }
+  .shop-strip-preview { gap: 6px; }
+  .mini-frame { width: 60px; height: 80px; font-size: 1.3rem; }
+  .faq-item summary { font-size: 15px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
